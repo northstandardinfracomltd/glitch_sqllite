@@ -42,15 +42,15 @@
             <h2>Poll History</h2>
             <table>
               <tr>
-                <th>Option Name</th>
-                <th>Timestamp</th>
-              </tr>
-              {{#each optionHistory}}
-                <tr>
-                  <td>{{choice}}</td>
-                  <td>{{time}}</td>
-                </tr>
-              {{/each}}
+  <th>Text Input</th>
+  <th>Timestamp</th>
+</tr>
+{{#each optionHistory}}
+  <tr>
+    <td>{{textInput}}</td>
+    <td>{{time}}</td>
+  </tr>
+{{/each}}
             </table>
           </div>
       {{else}}
