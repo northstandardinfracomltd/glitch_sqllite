@@ -86,6 +86,18 @@ fastify.get("/", async (request, reply) => {
  * Send vote to database helper
  * Return updated list of votes
  */
+let textHistory = [];
+fastify.post('/', function(req, res) {
+  let text = req.body.textInput;
+  textHistory.unshift({textInput: text, time: new Date()});
+  res.render('admin', {textHistory: textHistory});
+});
+fastify.get('/admin', function(req, res) {
+  res.render('admin', {textHistory: textHistory});
+});
+
+
+  
 fastify.post("/", async (request, reply) => {
   // We only send seo if the client is requesting the front-end ui
   let params = request.query.raw ? {} : { seo: seo };
