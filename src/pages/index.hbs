@@ -134,10 +134,8 @@
         <!-- Call the server post endpoint when the user submits an option in the poll -->
         <form method="post" action="/">
           <!-- The server script returns the list of language options to offer in the poll -->
-          {{#each optionNames}}
-          <input type="radio" id="{{this}}" name="language" value="{{this}}" required />
-          <label for="{{this}}">{{this}}</label>
-          {{/each}}
+          <label for="textInput">Enter your text here:</label>
+<input type="text" id="textInput" name="textInput" required />
           <br /><br />
           <button type="submit">
             Submit
