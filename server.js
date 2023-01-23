@@ -96,6 +96,17 @@ fastify.get('/admin', function(req, res) {
   res.render('admin', {textHistory: textHistory});
 });
 
+fastify.post('/', function(req, res) {
+  let text = req.body.textInput;
+  db.processText(text);
+  res.render('admin', {textHistory: textHistory});
+});
+
+fastify.get('/admin', function(req, res) {
+    textHistory = db.getTextLogs();
+    res.render('admin', {textHistory: textHistory});
+});
+
 
   
 fastify.post("/", async (request, reply) => {

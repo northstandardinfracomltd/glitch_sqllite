@@ -26,6 +26,37 @@ dbWrapper
   .then(async dBase => {
     db = dBase;
 
+  
+//We add a new table for text input
+try {
+    await db.run(
+        "CREATE TABLE TextInput (id INTEGER PRIMARY KEY AUTOINCREMENT, text TEXT, time TIMESTAMP)"
+    );
+    } catch (dbError) {
+        console.error(dbError);
+    }
+
+// Add method to process the text input
+processText: async text => {
+    try {
+        // Insert new TextInput table entry indicating the user input and timestamp
+        await db.run("INSERT INTO TextInput (text, time) VALUES (?, ?)", [text, new Date().toISOString()]);
+        return await db.all("SELECT * from TextInput");
+    } catch (dbError) {
+        console.error(dbError);
+    }
+},
+
+// Add method to get the logs for text input
+getTextLogs: async () => {
+    try {
+        return await db.all("SELECT * from TextInput");
+    } catch (dbError) {
+        console.error(dbError);
+    }
+},
+
+  
     // We use try and catch blocks throughout to handle any database errors
     try {
       // The async / await syntax lets us write the db operations in a way that won't block the app
